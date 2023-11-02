@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import Button from "./Button";
+import Button from "./smallComponents/Button";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import useOnClickOutside from "../Hooks/useOnClickOutside";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropdownMenu1: React.FC<{
+const DropdownMenu1Icon: React.FC<{
   stroke?: string;
   strokeWidth?: string;
   strokeLinecap?: string;
@@ -21,4 +21,4 @@ const DropdownMenu1: React.FC<{
   );
 };
 
-export default DropdownMenu1;
+export default DropdownMenu1Icon;

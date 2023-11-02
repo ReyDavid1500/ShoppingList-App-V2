@@ -1,6 +1,6 @@
 import React from "react";
 
-const DropdownMenu2 = () => {
+const DropdownMenu2Icon = () => {
   return (
     <svg
       width="40"
@@ -16,4 +16,4 @@ const DropdownMenu2 = () => {
   );
 };
 
-export default DropdownMenu2;
+export default DropdownMenu2Icon;

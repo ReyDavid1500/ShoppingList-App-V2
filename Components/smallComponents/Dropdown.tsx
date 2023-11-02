@@ -1,5 +1,5 @@
 import React, { ReactNode, useState } from "react";
-import useOnClickOutside from "../Hooks/useOnClickOutside";
+import useOnClickOutside from "../../Hooks/useOnClickOutside";
 
 interface TDropdownProps {
   children: ReactNode;

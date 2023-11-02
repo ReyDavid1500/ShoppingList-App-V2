@@ -1,14 +1,19 @@
 import React from "react";
-import PlusIcon from "./SVG/PlusIcon";
+import PlusIcon from "../SVG/PlusIcon";
 
 export interface ProductInput {
   placeholder: string;
-  onChange: React.ChangeEvent<HTMLInputElement>;
-  onSubmit: React.FormEvent<HTMLInputElement>;
-  addState: boolean;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  value: string;
 }
 
-const ProductInput = ({ placeholder, onChange, onSubmit, addState = true }) => {
+const ProductInput = ({
+  placeholder,
+  onChange,
+  onSubmit,
+  value,
+}: ProductInput) => {
   return (
     <form
       className="w-full ml-2 flex flex-row gap-1 items-center"
@@ -19,12 +24,9 @@ const ProductInput = ({ placeholder, onChange, onSubmit, addState = true }) => {
         type="text"
         placeholder={placeholder}
         onChange={onChange}
+        value={value}
       />
-      <button
-        disabled={!addState}
-        className={`${addState && "bg-white text-black"}`}
-        type="submit"
-      >
+      <button type="submit">
         <PlusIcon width="45" height="35" />
       </button>
     </form>

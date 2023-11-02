@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { RootState } from "../Redux/store";
-import { useAppDispatch, useAppSelector } from "../Hooks/storeHooks";
-import { useReducerActions } from "../Hooks/useReducerActions";
+import { RootState } from "../../Redux/store";
+import { useAppDispatch, useAppSelector } from "../../Hooks/storeHooks";
+import { useReducerActions } from "../../Hooks/useReducerActions";
 
 const Snackbar = () => {
   const snackbar = useAppSelector((state: RootState) => state.snackbar);

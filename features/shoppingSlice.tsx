@@ -31,7 +31,7 @@ const shoppingSlice = createSlice({
   reducers: {
     addNewList: (state, action: PayloadAction<ShoppingList>) => {
       const id = crypto.randomUUID();
-      state.push({ id, ...action.payload });
+      state.unshift({ id, ...action.payload });
     },
     deleteList: (state, action: PayloadAction<shoppingId>) => {
       const id = action.payload;

@@ -1,11 +1,15 @@
-import { addNewProduct, ProductList } from "../features/productSlice";
+import {
+  addNewProduct,
+  productId,
+  ProductList,
+  toggleProductChecked,
+} from "../features/productSlice";
 import {
   addNewList,
   deleteList,
   editListName,
   shoppingId,
   ShoppingList,
-  ShoppingWithId,
 } from "../features/shoppingSlice";
 import { openSnackbar, closeSnackbar } from "../features/snackbarSlice";
 import { useAppDispatch } from "./storeHooks";
@@ -41,6 +45,10 @@ export const useReducerActions = () => {
     dispatch(addNewProduct(itemName));
   };
 
+  const toggleProduct = (id: productId) => {
+    dispatch(toggleProductChecked(id));
+  };
+
   return {
     showSnackbar,
     hideSnackbar,
@@ -48,5 +56,6 @@ export const useReducerActions = () => {
     removeList,
     renameList,
     newProduct,
+    toggleProduct,
   };
 };

@@ -15,7 +15,7 @@ const ShoppingList = ({
     <li
       data-id={dataId}
       onClick={onClick}
-      className={`flex flex-col justify-center w-full sm:w-full  mt-5 bg-soft-orange rounded-lg h-[83px] pl-6 gap-y-2 cursor-pointer hover:bg-soft-orange/60 dark:bg-gray-400 dark:hover:bg-gray-600 ${selectedStyles}`}
+      className={`flex flex-col justify-center w-full sm:w-full  mt-5 bg-soft-orange rounded-lg h-[83px] pl-6 gap-y-2 cursor-pointer hover:bg-soft-orange/60 dark:bg-gray-400 dark:hover:bg-gray-600 ${selectedStyles} hover:translate-y-[-2px] transition duration-500`}
     >
       <p className="text-3xl dark:text-white">{name}</p>
       <p className="dark:text-white">items</p>

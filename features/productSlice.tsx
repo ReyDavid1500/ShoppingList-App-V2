@@ -42,8 +42,16 @@ const productSlice = createSlice({
       const id = crypto.randomUUID();
       state.push({ id, ...action.payload });
     },
+    toggleProductChecked: (state, action: PayloadAction<productId>) => {
+      const productId = action.payload;
+      const product = state.find((item) => item.id === productId);
+
+      if (product) {
+        product.isChecked = !product.isChecked;
+      }
+    },
   },
 });
 
-export const { addNewProduct } = productSlice.actions;
+export const { addNewProduct, toggleProductChecked } = productSlice.actions;
 export default productSlice.reducer;

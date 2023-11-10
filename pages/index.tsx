@@ -18,13 +18,18 @@ const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalEditName, setShowModalEditName] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showModalDeleteItems, setShowModalDeleteItems] = useState(false);
   const [newShoppingList, setNewShoppingList] = useState<string | undefined>();
   const [newItem, setNewItem] = useState<string | undefined>();
 
-  console.log(newItem);
-
-  const { showSnackbar, newList, removeList, renameList, newProduct } =
-    useReducerActions();
+  const {
+    showSnackbar,
+    newList,
+    removeList,
+    renameList,
+    newProduct,
+    toggleProduct,
+  } = useReducerActions();
 
   const shopping = useAppSelector((state) => state.shopping);
   const product = useAppSelector((state) => state.product);
@@ -40,6 +45,8 @@ const HomePage = () => {
       case "changeName":
         setShowModalEditName(true);
         break;
+      case "deleteAllProducts":
+        setShowModalDeleteItems(true);
     }
   };
 
@@ -99,6 +106,20 @@ const HomePage = () => {
     }
   };
 
+  const onDeleteItemsHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const itemId = e.currentTarget.dataset.id;
+    const isChecked = !!e.currentTarget.dataset.isChecked;
+    setShowModalDeleteItems(false);
+  };
+
+  const handleCheckedProducts = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const itemId = e.currentTarget.dataset.id;
+    const isChecked = e.currentTarget.dataset.isChecked;
+
+    toggleProduct(itemId);
+    console.log(isChecked);
+  };
+
   return (
     <div className="dark:h-screen dark:bg-black">
       <Header
@@ -107,7 +128,7 @@ const HomePage = () => {
       />
       <main className="sm:flex sm:flex-row sm:gap-3 sm:p-6">
         {isListOpen && (
-          <section className="flex flex-col items-center pt-6 dark:bg-black pr-2">
+          <section className="flex flex-col items-center pt-6 dark:bg-black pr-2 transition-transform">
             <Button
               style={{
                 width: "283px",
@@ -154,7 +175,15 @@ const HomePage = () => {
               />
             </div>
             {product.map((listItem) => {
-              return <ProductItem key={listItem.id} name={listItem.itemName} />;
+              return (
+                <ProductItem
+                  dataChecked={listItem.isChecked}
+                  dataId={listItem.id}
+                  key={listItem.id}
+                  name={listItem.itemName}
+                  onChange={handleCheckedProducts}
+                />
+              );
             })}
           </div>
         </section>
@@ -197,6 +226,17 @@ const HomePage = () => {
       >
         <p className="text-white text-xl font-medium w-[85%] ml-8 pl-2">
           Are you sure you want to delete "{selectedList?.listName}"?
+        </p>
+      </Modal>
+      {/* Delete Selected Products  */}
+      <Modal
+        onClose={() => setShowModalDeleteItems(false)}
+        isOpen={showModalDeleteItems}
+        title="Delete Selected Items from List"
+        handleAccept={onDeleteItemsHandler}
+      >
+        <p className="text-white text-xl font-medium w-[85%] ml-8 pl-2">
+          Are you sure you want to delete the selected items?
         </p>
       </Modal>
     </div>
